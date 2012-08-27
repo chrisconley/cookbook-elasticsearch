@@ -5,6 +5,11 @@ server {
   error_log   <%= node.elasticsearch[:nginx][:log_dir] %>/elasticsearch-errors.log;
   access_log  <%= node.elasticsearch[:nginx][:log_dir] %>/elasticsearch.log;
 
+  location = /health {
+    return 200 "okay";
+    break;
+  }
+
   location / {
 
     # Deny Nodes Shutdown API
